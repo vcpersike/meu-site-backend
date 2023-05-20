@@ -13,14 +13,14 @@ const docFile = fs.readFileSync(
 const credenciais = JSON.parse(docFile);
 
 @Injectable()
-export class GoogleSpreadsheetService {
+export class ExperienciaService {
   private doc: GoogleSpreadsheet;
 
   constructor() {
     this.doc = new GoogleSpreadsheet(credenciais.SPREADSHEET_ID);
   }
 
-  async getData(): Promise<any[]> {
+  async getExperiencia(): Promise<any[]> {
     await this.doc.useServiceAccountAuth({
       client_email: credenciais.client_email,
       private_key: credenciais.private_key,

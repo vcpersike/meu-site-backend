@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
-import { GoogleSpreadsheetService } from './google-spreadsheet/google-spreadsheet.service';
-import { SpreadsheetController } from './google-spreadsheet/spreadsheet.controller';
+import { ExperienciaService } from './google-spreadsheet/experiencia.service';
+import { ExperienciaController } from './google-spreadsheet/experiencia.controller';
 
 @Module({
   imports: [],
-  controllers: [SpreadsheetController],
-  providers: [GoogleSpreadsheetService],
+  controllers: [ExperienciaController],
+  providers: [ExperienciaService],
 })
 export class AppModule {}
