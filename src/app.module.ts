@@ -1,10 +1,12 @@
 import { Module } from '@nestjs/common';
-import { ExperienciaService } from './google-spreadsheet/experiencia.service';
-import { ExperienciaController } from './google-spreadsheet/experiencia.controller';
+import { ExperienciaService } from './experiencias/experiencia.service';
+import { ExperienciaController } from './experiencias/experiencia.controller';
+import { LinguagensService } from './linguagens/linguagens.service';
+import { LinguagensController } from './linguagens/linguagens.controller';
 
 @Module({
   imports: [],
-  controllers: [ExperienciaController],
-  providers: [ExperienciaService],
+  controllers: [ExperienciaController, LinguagensController],
+  providers: [ExperienciaService, LinguagensService],
 })
 export class AppModule {}

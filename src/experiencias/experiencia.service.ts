@@ -17,7 +17,7 @@ export class ExperienciaService {
   private doc: GoogleSpreadsheet;
 
   constructor() {
-    this.doc = new GoogleSpreadsheet(credenciais.SPREADSHEET_ID);
+    this.doc = new GoogleSpreadsheet(credenciais.SPREADSHEET_ID_EXPERIENCIAS);
   }
 
   async getExperiencia(): Promise<any[]> {
