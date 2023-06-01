@@ -1,35 +1,27 @@
 import { Injectable } from '@nestjs/common';
-import { GoogleSpreadsheet } from 'google-spreadsheet';
-import * as fs from 'fs';
-import { resolve } from 'path';
-
-const docFile = fs.readFileSync(
-  resolve(__dirname, '../../config/credenciais.json'),
-  {
-    encoding: 'utf-8',
-  },
-);
-
-const credenciais = JSON.parse(docFile);
+import { GoogleSpreadsheetWorksheet } from 'google-spreadsheet';
+import { ConfigGoogleSheetsService, credenciais } from '../config.service';
 
 @Injectable()
 export class ExperienciaService {
-  private doc: GoogleSpreadsheet;
+  private experienciasSheet: GoogleSpreadsheetWorksheet;
 
-  constructor() {
-    this.doc = new GoogleSpreadsheet(credenciais.SPREADSHEET_ID_EXPERIENCIAS);
+  constructor(private googleSheetsService: ConfigGoogleSheetsService) {
+    this.experienciasSheet = null;
   }
 
   async getExperiencia(): Promise<any[]> {
-    await this.doc.useServiceAccountAuth({
-      client_email: credenciais.client_email,
-      private_key: credenciais.private_key,
-    });
+    await this.googleSheetsService.useServiceAccountAuthExperiencias();
+    await this.googleSheetsService.loadSpreadsheetExperiencias();
 
-    await this.doc.loadInfo();
-    const sheet = this.doc.sheetsByIndex[0];
-    const rows = await sheet.getRows();
+    this.experienciasSheet =
+      this.googleSheetsService.getSheetByTitleExperiencias(
+        credenciais.SPREADSHEET_TAB_EXPERIENCIAS,
+      );
 
-    return rows.map((row) => row._rawData);
+    const lingaguensSheetRows = await this.experienciasSheet.getRows();
+
+    const combinedData = [...lingaguensSheetRows.map((row) => row._rawData)];
+    return combinedData;
   }
 }
