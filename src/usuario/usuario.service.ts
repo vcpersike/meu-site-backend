@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import SQLiteCloud from 'sqlitecloud-sdk';
+import * as SQLiteCloud from 'sqlitecloud-sdk';
 import { credenciais } from 'src/config.service';
 
 @Injectable()
@@ -7,7 +7,7 @@ export class UsuarioService {
   private db: SQLiteCloud.Database;
 
   constructor() {
-    const sqliteCloud = new SQLiteCloud(credenciais.DATABASE_URL);
+    const sqliteCloud = new SQLiteCloud.default(credenciais.DATABASE_URL);
     this.db = sqliteCloud.Database();
     this.criaTabela();
   }
