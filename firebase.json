@@ -12,7 +12,19 @@
       "predeploy": [
         "npm --prefix \"$RESOURCE_DIR\" run lint",
         "npm --prefix \"$RESOURCE_DIR\" run build"
-      ]
+      ],
+      "targets": {
+        "function-1": {
+          "hosting": {
+            "rewrites": [
+              {
+                "source": ".",
+                "function": "function-1"
+              }
+            ]
+          }
+        }
+      }
     }
   ]
 }

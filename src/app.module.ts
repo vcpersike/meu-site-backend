@@ -8,8 +8,6 @@ import { ProjetosService } from './projetos/projetos.service';
 import { ConfigGoogleSheetsService } from './config.service';
 import { ContatoController } from './contato/contato.controller';
 import { ContatoService } from './contato/contato.service';
-import { UsuarioService } from './usuario/usuario.service';
-import { UsuarioController } from './usuario/usuario.controller';
 
 @Module({
   imports: [],
@@ -18,7 +16,6 @@ import { UsuarioController } from './usuario/usuario.controller';
     ExperienciaController,
     LinguagensController,
     ProjetosController,
-    UsuarioController,
   ],
   providers: [
     ContatoService,
@@ -26,7 +23,6 @@ import { UsuarioController } from './usuario/usuario.controller';
     LinguagensService,
     ProjetosService,
     ConfigGoogleSheetsService,
-    UsuarioService,
   ],
 })
 // eslint-disable-next-line prettier/prettier
